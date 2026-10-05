@@ -18,11 +18,14 @@ function navigateToDetails() {
 <template>
     <div class="todo-card" @click="navigateToDetails">
         <span>{{ todo.title }}</span>
-        <span class="status-text">{{ todo.completed ? "Completed" : "Pending" }}</span>
+        <span class="status-text" :class="todo.completed ? 'completed' : 'pending'">
+            {{ todo.completed ? "Completed" : "Pending" }}
+        </span>
     </div>
 </template>
 
 <style scoped>
+
 .todo-card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -40,10 +43,12 @@ function navigateToDetails() {
     background: #f5f5f5;
 }
 
-.status-text {
-    font-size: 0.85rem;
-    color: #666;
-    white-space: nowrap;
-    margin-left: 12px;
+
+.status-text.pending {
+    color: #d9534f;
+}
+
+.status-text.completed {
+    color: #27ae60;
 }
 </style>

@@ -54,6 +54,19 @@ watch(
         if (newTab) activeTab.value = newTab;
     }
 );
+
+
+const totalPosts = computed(() => filteredPostsByUser.value.length);
+const totalTodos = computed(() => filteredTodosByUser.value.length);
+
+const pendingTodos = computed(() => 
+  filteredTodosByUser.value.filter((todo) => !todo.completed).length
+);
+
+const completedTodos = computed(() => 
+  filteredTodosByUser.value.filter((todo) => todo.completed).length
+);
+
 </script>
 
 <template>
@@ -61,6 +74,18 @@ watch(
         <div class="user-card-center">
             <h1>{{ currentUser.name }}</h1>
             <p class="email-text">{{ currentUser.email }}</p>
+        </div>
+
+        <div class="stats">
+            Total Posts = {{ totalPosts }}
+            <br>
+            Total Todos = {{ totalTodos }}
+            <br>
+            Pending Todos = {{ pendingTodos }}
+            <br>
+            Completed Todos = {{ completedTodos }}
+            <br>
+
         </div>
 
         <div class="tab-bar-container">
@@ -178,5 +203,20 @@ h1 {
     background: #fafafa;
     border-radius: 8px;
     border: 1px dashed #e0e0e0;
+}
+
+.stats {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 2;
+  color: #495057;
+  font-family: inherit;
 }
 </style>
